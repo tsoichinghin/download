@@ -5,16 +5,15 @@ import shutil
 
 def get_random_lowercase(length):
     lowercase_characters = 'abcdefghijklmnopqrstuvwxyz'
-    uppercase_characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    characters = lowercase_characters + uppercase_characters
+    characters = lowercase_characters
     result = ''
     for _ in range(length):
         random_index = random.randint(0, len(characters) - 1)
         result += characters[random_index]
     return result
 
-min_length = 10
-max_length = 15
+min_length = 4
+max_length = 6
 
 while True:
     random_length = random.randint(min_length, max_length)
@@ -22,7 +21,7 @@ while True:
     if isinstance(random_string, str) and random_string.strip() != '':
         break
 
-csv_filename = os.path.join("emailname.csv")
+csv_filename = os.path.join("firstname.csv")
 if os.path.exists(csv_filename):
     os.remove(csv_filename)
 with open(csv_filename, "w", newline='') as csv_file:
@@ -30,7 +29,7 @@ with open(csv_filename, "w", newline='') as csv_file:
     csv_writer.writerow([random_string])
 
 destination_folder = "/home/tch/Desktop/uivision/datasources"
-copy_file = os.path.join(destination_folder, "emailname.csv")
+copy_file = os.path.join(destination_folder, "firstname.csv")
 if os.path.exists(copy_file):
     os.remove(copy_file)
 shutil.copy(csv_filename, os.path.join(destination_folder, csv_filename))
